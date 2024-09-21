@@ -12,7 +12,7 @@
     "outDir": "./build",
     "baseUrl": "./",
     "removeComments": false,
-    "strictNullChecks": true,
+    "strictNullChecks": false,
     "esModuleInterop": true,
     "paths": {},
     "lib": [

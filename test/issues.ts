@@ -153,7 +153,7 @@ test('#31 query param for sso/slo returns error', t => {
   test('#91 idp gets single sign on service from the metadata', t => {
     t.is(idp.entityMeta.getSingleSignOnService('post'), 'idp.example.com/sso');
   });
-  
+
   test('#98 undefined AssertionConsumerServiceURL with redirect request', t => {
     const { id, context } = sp98.createLoginRequest(idp, 'redirect');
     const originalURL = url.parse(context, true);

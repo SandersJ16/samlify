@@ -265,9 +265,15 @@ const libSaml = () => {
     */
     replaceTagsByValue(rawXML: string, tagValues: any): string {
       Object.keys(tagValues).forEach(t => {
+        let tagValue = tagValues[t];
+        try {
+          tagValue = tagValue.toString();
+        } catch (e) {
+          // Pass and use original value
+        }
         rawXML = rawXML.replace(
           new RegExp(`("?)\\{${t}\\}`, 'g'),
-          escapeTag(tagValues[t])
+          escapeTag(tagValue)
         );
       });
       return rawXML;
@@ -453,7 +459,10 @@ const libSaml = () => {
 
         sig.loadSignature(signatureNode);
 
+        console.log({before:doc.toString()});
         doc.removeChild(signatureNode);
+        console.log({after: doc.toString()});
+
 
         verified = verified && sig.checkSignature(doc.toString());
 
